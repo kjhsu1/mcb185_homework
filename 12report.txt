@@ -1,0 +1,14 @@
+Wed Jan 10 00:19:34 PST 2024
+kentahsu
+/Users/kentahsu
+/bin/bash
+/Users/kentahsu/Code/mcb185_homework
+/Users/kentahsu/anaconda3/bin:/Users/kentahsu/anaconda3/condabin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+Darwin MacBook-Pro-153.local 21.6.0 Darwin Kernel Version 21.6.0: Wed Oct  4 23:56:02 PDT 2023; root:xnu-8020.240.18.704.15~1/RELEASE_ARM64_T6000 arm64
+Python 3.10.12
+/Users/kentahsu/Code
+/Users/kentahsu/Code/mcb185_homework
+/Users/kentahsu/Code/mcb185_homework/.git
+/Users/kentahsu/Code/MCB185
+/Users/kentahsu/Code/MCB185/.git
+/Users/kentahsu/Code/MCB185/data
