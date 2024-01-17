@@ -14,4 +14,4 @@
 # All characters are either RZONIAC now 
 # So all that is left is to grep ".{4}" to now be left with stdout with all words over 4 characters
 
-gunzip -c ~/Code/MCB185/data/dictionary.gz | grep "r" | grep -v -E "[bdefghjklmpqstuvwxy]+" | grep -E ".{4}" 
+gunzip -c /Users/kentahsu/Code/MCB185/data/dictionary.gz | grep "r" | grep -v -E "[bdefghjklmpqstuvwxy]+" | grep -E ".{4}" 
