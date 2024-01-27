@@ -18,12 +18,12 @@ def oligo_meltingtemp(a,t,g,c,):
 	if type(c) != int and type(c) != float: sys.exit('c must be int or float')
 	if c < 0: sys.exit('c must be greater than 0')
 
-	sum = a+t+g+c  					# where meat of program starts
-	if sum <= 13:
+	length = a+t+g+c  					# where meat of program starts
+	if length <= 13:
 		Tm = (a+t)*2 + (g+c)*4
 		return Tm
 	else:
-		Tm = 64.9 + 41*(g+c - 16.4) / (a+t+g+c)
+		Tm = 64.9 + 41*(g+c - 16.4) / length
 		return Tm
 
 # longer than 13 

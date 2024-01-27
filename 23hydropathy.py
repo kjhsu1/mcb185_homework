@@ -22,6 +22,7 @@ def KD_hydrophobicity(amino_acid):
 	elif amino_acid == 'V': return 4.2
 	elif amino_acid == 'W': return -0.9
 	elif amino_acid == 'Y': return -1.3
+	else: sys.exit('Feed a valid amino acid')
 
 # Alanine 
 print(KD_hydrophobicity('A'))
