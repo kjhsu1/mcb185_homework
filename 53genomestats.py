@@ -47,17 +47,20 @@ def std_dev(dataset_as_list):			# takes in numerical data set as list, returns s
 	mean = 0
 	sigma = 0
 	sd = 0
-	
-	for number in dataset_as_list:
-		sum += number
 
-	mean = sum / N 		# find mean 
+	if N == 1:		# in case there was only 1 match in the database for the feature 
+		return 0
+	else:
+		for number in dataset_as_list:
+			sum += number
 
-	for number in dataset_as_list: sigma += (number - mean)**2
+		mean = sum / N 		# find mean 
 
-	# compute standard deviation
-	sd = math.sqrt(sigma / (N - 1))
-	return sd
+		for number in dataset_as_list: sigma += (number - mean)**2
+
+		# compute standard deviation
+		sd = math.sqrt(sigma / (N - 1))
+		return round(sd, 2)
 
 def median(dataset_as_list):			# takes in numerical data set as list, returns median
 	# initialize
@@ -69,49 +72,48 @@ def median(dataset_as_list):			# takes in numerical data set as list, returns me
 	# if N is odd
 	if N % 2 != 0: median = dataset_as_list[(N // 2)]
 	# if N is even
-	else: median = median = (dataset_as_list[int((N // 2 - 1))] + dataset_as_list[int(N // 2)])
-
+	else: 
+		median = (dataset_as_list[int((N // 2 - 1))] + dataset_as_list[int(N // 2)]) / 2
 	# return 
 	return median
 
 def genome_stats(path_to_file):
 	# initialize varibles used to store stats for all features
-	features = features_into_list(path_to_file)
-	count = []
-	minimum = []
-	maximum = []
-	std_dev = []		
-	median = []
+	all_features = features_into_list(path_to_file)
+	all_count = []
+	all_minimum = []
+	all_maximum = []
+	all_std_dev = []		
+	all_median = []
 
-	with gzip.open(path_to_file, 'rt') as file:	# now file is accessable
-		for feature in features:				# loop through individual features, update add to respective lists containing stats
-			
-			# initialize variables for the current feature
-			count = 0
-			minimum = 0
-			maximum = 0
-			length_list = []					# will numerically sort later to find median, can also use this for std deviation
-
+	for feature in all_features:				# loop through individual features, update add to respective lists containing stats
+		# initialize variables for the current feature
+		count = 0
+		minimum = 1000000000 # or infiinity
+		maximum = 0
+		length_list = []					# will numerically sort later to find median, can also use this for std deviation
+		with gzip.open(path_to_file, 'rt') as file:
 			for line in file:					# if first element is '#' it is a comment so go to next line
 				if line[0] == '#': continue 			
 
 				column = line.split() 			# create list, each list element is the element in each column (ie. words[0] == column 1)
-				
+
 				if column[2] == feature:		# see if line has feature 
 					count += 1
-					length = int(column[4]) - int(column(3)) + 1
+					
+					length = int(column[4]) - int(column[3]) + 1
 					length_list.append(length)		# add length of seq with current feature 
-					if length > max: max = length 	# update max
-					if length < min: min = length 	# update min 
-
+					if length > maximum: maximum = length 	# update max
+					if length < minimum: 
+						minimum = length 	# update min 
 			# append 
-			count.append(count)
-			minimum.append(minimum)
-			maximum.append(maximum)
-			std_dev.append(std_dev(length_list))
-			median.append(median(length_list))
+			all_count.append(count)
+			all_minimum.append(minimum)
+			all_maximum.append(maximum)
+			all_std_dev.append(std_dev(length_list))
+			all_median.append(median(length_list))
 	# return 
-	return features, count, minimum, maximum, std_dev, median
+	return all_count, all_minimum, all_maximum, all_std_dev, all_median
 
 
 # first thing is to find how many categories there are. Create a loop for that 
@@ -123,6 +125,11 @@ We don't want duplicates, so when checking 3rd column of each line, do a contain
 
 if no matches found, then append the list 
 '''
-data = [4, 3, 2, 1]
-print(median(data))
+count, minimum, maximum, std_dev, median = genome_stats(path_d_melangaster)
+print(features_into_list(path_d_melangaster))
+print(count)
+print(minimum)
+print(maximum)
+print(std_dev)
+print(median)
 
