@@ -5,6 +5,7 @@ import math
 # Shannon entropy measures randomness of data, in this case nucleotides
 # Takes dna seq as an input, 
 def shannon_entropy(a, c, g, t):
+	# intializing
 	h = 0 
 	total_nuc = a+t+g+c
 	
