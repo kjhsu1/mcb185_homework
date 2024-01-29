@@ -300,8 +300,4 @@ for thing in test_list:
 
 print(counter)
 
-print()
-astring = ''
-astring = 'bob'
-print(astring)
 
