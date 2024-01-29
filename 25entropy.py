@@ -14,10 +14,14 @@ def shannon_entropy(a, c, g, t):
 	g_prob = g / total_nuc
 	t_prob = t / total_nuc
 	
-	if a_prob != 0: h = h + a_prob * math.log(a_prob, 2)		# expressions inside the sigma
-	if c_prob != 0: h = h + c_prob * math.log(c_prob, 2)
-	if g_prob != 0: h = h + g_prob * math.log(g_prob, 2)
-	if t_prob != 0: h = h + t_prob * math.log(t_prob, 2)
+	if a_prob != 0: 
+		h = h + a_prob * math.log2(a_prob)		# expressions inside the sigma
+	if c_prob != 0: 
+		h = h + c_prob * math.log2(c_prob)
+	if g_prob != 0: 
+		h = h + g_prob * math.log2(g_prob)
+	if t_prob != 0: 
+		h = h + t_prob * math.log2(t_prob)
 
 	return -h	# final entropy value
 
@@ -25,9 +29,9 @@ def shannon_entropy(a, c, g, t):
 print(shannon_entropy(1, 2, 3, 4))
 
 # testing part 2 
-print(shannon_entropy(5,6,30,10000))
+print(shannon_entropy(5, 6, 30, 10000))
 
 # testing part 3
-# print(shannon_entropy(10000000,0,0,5))	
+# print(shannon_entropy(10000000, 0, 0, 5))	
 
 

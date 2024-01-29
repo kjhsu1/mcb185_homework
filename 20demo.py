@@ -27,7 +27,7 @@ def pythagoras(a, b):
 	c = math.sqrt(a**2 + b**2)
 	return c
 
-x = pythagoras(3,4)
+x = pythagoras(3, 4)
 print(x)
 
 # or 
@@ -59,7 +59,7 @@ print(neg_to_pos(-5))
 def square_volume(base, width, height):
 	volume = base*width*height
 	return volume
-print(square_volume(2,2,2))
+print(square_volume(2, 2, 2))
 
 # function to compute circle area 
 def circle_area(radius):
@@ -83,15 +83,15 @@ print(mph_to_kph(60))
 def OD260_to_DNAconc(OD, A260, A320, dilution_factor):
 	DNAconc = (A260 - A320)*dilution_factor*50
 	return DNAconc
-print(OD260_to_DNAconc(0.6,1,0.5,5))
+print(OD260_to_DNAconc(0.6, 1, 0.5, 5))
 
 # function compute distance between two cartesian points
-def distance_two_points(ax,ay,bx,by):
+def distance_two_points(ax, ay, bx, by):
 	distance_x = abs(ax - bx)
 	distance_y = abs(bx - by)
 	distance = pythagoras(distance_x, distance_y)
 	return distance 
-print(distance_two_points(5,5,6,6))
+print(distance_two_points(5, 5, 6, 6))
 
 # function that computes midpoint
 def midpoint(x1, y1, x2, y2):
