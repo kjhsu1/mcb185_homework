@@ -7,7 +7,7 @@
 
 # order of if, elif statement matters
 # you have to make sure to detect fizzbuzz first
-for i in range(1,101):
+for i in range(1, 101):
 	if i % 3 == 0 and i % 5 == 0:
 		print('FizzBuzz')
 	elif i % 5 == 0:

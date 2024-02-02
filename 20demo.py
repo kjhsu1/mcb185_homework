@@ -204,6 +204,13 @@ def dna_comp(base):
 print(dna_comp('A'))
 
 
+# testing strings 
+string = 'ALAT'
+print(string[0:4])	# last index is not included
+
+
+
+
 
 
 
