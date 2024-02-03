@@ -50,6 +50,7 @@ def KD_hydrophobicity(amino_acid):
 	elif amino_acid == 'V': return 4.2
 	elif amino_acid == 'W': return -0.9
 	elif amino_acid == 'Y': return -1.3
+	elif amino_acid == 'U': return 2.5
 	else: sys.exit('Feed a valid amino acid')
 
 def has_signal_pep_check_pass(seq): # feed first 30 aa seq
@@ -66,7 +67,7 @@ def has_signal_pep_check_pass(seq): # feed first 30 aa seq
 		if average_kd >= 2.5 and proline_check(current_window) == False:
 			return True
 	# return False if no hydrophobic seq
-	return False
+	return False       
 
 def has_transmembrane_region(seq): # feed seq after first 30 aa
 	# another sliding window 
@@ -106,8 +107,9 @@ def transmembrane(deflines, seqs):
 	return transmembrane_prot_string
 
 # run
-for defline, seq in zip(defline, seq):
+print(transmembrane(deflines, seqs))
+'''
+for defline, seq in zip(deflines, seqs):
 	if is_transmembrane_protein(seq) == True:
 		print(defline)
-
-
+'''
