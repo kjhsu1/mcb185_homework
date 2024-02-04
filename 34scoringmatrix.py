@@ -1,4 +1,4 @@
-# 34scoringmatrix.py by Kenta Hsu
+# 34scoringmatrix.py by Kenta Hsu and Natalia Marin
 
 # iterate through the string container
 # set alphabet = " A C G T"
@@ -6,16 +6,21 @@
 # from second row on, iterate through string alphabet
 
 def scoringmatrix():
-	alphabet = "   A  C  G  T"
-	print(alphabet)
-	for char in alphabet:
-		if char == 'A':
-			print('A +1 -1 -1 -1')
-		elif char == 'C':
-			print('C -1 +1 -1 -1')
-		elif char == 'G':
-			print('G -1 -1 +1 -1')
-		elif char == 'T':
-			print('T -1 -1 -1 +1')
-		else: continue
+	nts = 'ACGT'
+	print(' ', end='')
+	for nt in nts:
+		print('  ', end='')
+		print(nt, end='')
+	print()
+	for nt in nts:
+		print(nt, end=' ')
+		for nt2 in nts:
+			if nt == nt2:
+				print('+1', end=' ')
+			else:
+				print('-1', end=' ')
+		print()
+
 scoringmatrix()
+
+
