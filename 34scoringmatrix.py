@@ -17,6 +17,5 @@ def scoringmatrix():
 			print('G -1 -1 +1 -1')
 		elif char == 'T':
 			print('T -1 -1 -1 +1')
-		else:
-			alphabet = alphabet  	# do nothing
+		else: continue
 scoringmatrix()

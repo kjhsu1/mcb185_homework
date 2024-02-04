@@ -2,12 +2,12 @@
 
 import math
 
-# n choose k just means the number of combinations of picking k elements from set of n elements
+# n choose k just means the number of combinations 
+# of picking k elements from set of n elements
 
 
 def nchoosek(n, k):
-	combinations = math.factorial(n) / (math.factorial(k) * math.factorial(n - k))
-	return combinations
+	return math.factorial(n) / (math.factorial(k) * math.factorial(n - k))
 
 print(nchoosek(100, 4))
 
