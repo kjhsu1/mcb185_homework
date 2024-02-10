@@ -1,5 +1,6 @@
 # 41zscores.py by Kenta Hsu 
-# count how many randomly generated numbers from a normal distribution is above 1, 2, and 3 standard deviations
+# count how many randomly generated numbers from a 
+# normal distribution is above 1, 2, and 3 standard deviations
 
 import random
 z1 = 0

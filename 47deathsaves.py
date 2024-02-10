@@ -23,14 +23,17 @@ def death_saves():
 	# continue to roll until you die, stablize, or revive 
 	while success < 3 and fail < 3 and revive == 0:
 		current_roll = random.randint(1, 20)
-		if current_roll == 20:	revive = 1 		# order of if/elifs matter here, need to check for 1 and 20 first
+		# order of if/elifs matter here, need to check for 1 and 20 first
+		if current_roll == 20: revive = 1
 		elif current_roll == 1:	fail += 2
 		elif current_roll >= 10:success += 1
 		elif current_roll < 10:	fail += 1
 	# evaluate 
 	if success == 3:
 		return 'stable'
-	if fail >= 3:		# has to be equal or greater than 3, fail can equal 4 if you roll a 1 with 2 fails
+# has to be equal or greater than 3, 
+# fail can equal 4 if you roll a 1 with 2 fails
+	if fail >= 3:		
 		return 'dead'
 	if revive == 1:
 		return 'revived'

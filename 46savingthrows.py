@@ -2,7 +2,8 @@
 
 import random
 
-# saving throw is basically roll a 20 sided die to decide whether you pass or fail 
+# saving throw is basically roll a 20 sided die 
+# to decide whether you pass or fail 
 # Relys on "difficulty class" 
 # some things give you advantages and disadvantages 
 
@@ -93,6 +94,8 @@ def prob_of_success(situation, difficulty_class):
 situation = '		Normal Advantage Disadvantage'
 print(situation)
 for i in range(5, 16, 5):
-	print('DC:', i, ' ', prob_of_success('normal', i), ' ', prob_of_success('advantage', i), ' ', prob_of_success('disadvantage', i), sep=' ', end='\n')
+	print('DC:', i, ' ', prob_of_success('normal', i), ' ', 
+	prob_of_success('advantage', i), ' ', 
+	prob_of_success('disadvantage', i), sep=' ', end='\n')
 
 
