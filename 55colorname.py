@@ -18,23 +18,30 @@ requested_rgb_list.append(R)
 requested_rgb_list.append(G)
 requested_rgb_list.append(B)
 
-# not a gff file, but need to use 'with' and 'as' keywords to iterate through every line
+# not a gff file, but need to use 'with' and 'as' keywords
+# to iterate through every line
 # what is considered the 'closest color'?
 # We are not using Euclidean distance but rather taxicab distance 
-# taxicab distance is defined as the absolute difference of each value summed up 
+# taxicab distance is defined as the 
+# absolute difference of each value summed up 
 # in our instance it will be below
-# taxicab_distance = abs(requested_red - official_color_red) + abs(requested_green - official_color_green) + abs(requested_blue - official_color_blue)
+# taxicab_distance = 
+# abs(requested_red - official_color_red) + abs(requested_green 
+# - official_color_green) + abs(requested_blue - official_color_blue)
 
-def rgb_taxicab_distance(requested_rgb_list, official_rgb_list):	# lists contain RGB value in RGB order
+# lists contain RGB value in RGB order
+def rgb_taxicab_distance(requested_rgb_list, official_rgb_list):
 	distance = 0
-	
-	for requested, official in zip(requested_rgb_list, official_rgb_list):	# iterate through both lists at the same time
+
+	# iterate through both lists at the same time
+	for requested, official in zip(requested_rgb_list, official_rgb_list):
 		distance += abs(requested - official)	# get taxicab distance
 	
 	return distance 
 
 # you want to have a variable that keeps track of minimum taxicab distance
-# run through each line in colorfile, get taxicab distance, update min variable accordingly 
+# run through each line in colorfile, 
+# get taxicab distance, update min variable accordingly 
 def closest_official_color(requested_rgb_list, colorfile):
 	matching_color = ''	
 	min = 100000000 # infinity
@@ -44,14 +51,16 @@ def closest_official_color(requested_rgb_list, colorfile):
 			# first split line into list, delimiter is empty space
 			list = line.split()
 			
-			# then split list[2] with ',' as delimiter to get new list that contains official RBG values 
+			# then split list[2] with ',' as delimiter to get 
+			# new list that contains official RBG values 
 			# elements are string objects so convert to int
 			official_rgb_list = list[2].split(',')
 			for i, value in enumerate(official_rgb_list):
 				official_rgb_list[i] = int(value)
 
 			
-			# find taxicab distance with the current official color and update best matching color and min
+			# find taxicab distance with the 
+			# current official color and update best matching color and min
 			taxicab_dist = rgb_taxicab_distance(requested_rgb_list, official_rgb_list)
 			if taxicab_dist < min:
 				min = taxicab_dist

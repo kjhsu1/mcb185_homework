@@ -4,8 +4,10 @@ import random
 import sys 
 
 # fill up classroom with randomly chosen birthdays 
-# simulate probability that at least two people will share birthdays in a classroom with 23 people 
-# command line argument should be, # trails = # days in calendar - # people in classroom 
+# simulate probability that at least two people will 
+# share birthdays in a classroom with 23 people 
+# command line argument should be, 
+# trails = # days in calendar - # people in classroom 
 
 trials = int(sys.argv[1])
 days = int(sys.argv[2])
@@ -27,7 +29,8 @@ def birthday_paradox_single_trial(days, people):
 		# append classroom list with number from 1 to number of calendar days
 		classroom_list.append(random.choice(calendar_list))
 
-	# iterate through classroom list for more than 1 match (guranteed 23 match, match with self)
+	# iterate through classroom list for more than 1 match 
+	# (guranteed 23 match, match with self)
 	for student_in_question in classroom_list:
 		for student in classroom_list:
 			if student_in_question == student:

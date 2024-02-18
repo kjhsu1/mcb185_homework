@@ -10,13 +10,18 @@
 
 import gzip
 
-path = '~/MCB185/data/GCF_000005845.2_ASM584v2_genomic.gff.gz'
+path = '/Users/kentahsu/Code/MCB185/data/GCF_000005845.2_ASM584v2_genomic.gff.gz'
 with gzip.open(path, 'rt') as fp:
 	for line in fp:
-		if line[0] == '#': continue 	# escape the current loop and move on to next iteration
-		words = line.split()	# turns string into list, split at any white space is default 
-		if words[2] != 'CDS': continue	# also escape current loop if third column does not say CDS
-		beg = int(words[3])		# if it is CDS, get the beginning and end indices and turn them into ints 
+		# escape the current loop and move on to next iteration
+		if line[0] == '#': continue 
+		# turns string into list, split at any white space is default
+		words = line.split()
+		# also escape current loop if third column does not say CDS 
+		if words[2] != 'CDS': continue
+		# if it is CDS, get the beginning and end indices and turn them into ints 
+		beg = int(words[3])
 		end = int(words[4])		
-		print(end - beg + 1)	# print length which is just this formula 
+		# print length which is just this formula 
+		print(end - beg + 1)	
 
