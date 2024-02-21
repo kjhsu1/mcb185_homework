@@ -78,6 +78,7 @@ def better_skewer(path, w):
 comps, skews = better_skewer(path, 1000)
 for i, (comp, skews) in enumerate(zip(comps, skews)):
 	print(i, comp, skews)
+	
 
 
 
