@@ -17,10 +17,10 @@ Participation
 | U | AC | VP | AQ | OC | SH | SA | CA | OA | Tot | Notes
 |:-:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:---:|:--------
 | 5 |    |    |    |    |  2 |    |    |    |     | 
-| 6 |
+| 6 |    |    |    |  2	|  2 |    |    |    |     | Coderie I hosted was 2 hours long, worked with 2 other people the whole time
 | 7 | 
 | 8 | 
 | 9 |
 
-Notes:
+Notes: 
 

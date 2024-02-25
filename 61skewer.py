@@ -3,8 +3,8 @@
 import dogma
 import mcb185
 import sys
-
-def fasta_to_lists(path):	# returns two lists with defline and seq
+# returns two lists with defline and seq
+def fasta_to_lists(path):
 	# store defline and sequence in a list 
 	# not working with multiple records for this problem
 	defline_list = []
@@ -24,6 +24,7 @@ seq = seq_list[0]
 w = 1000
 for i in range(len(seq) -w +1):
 	s = seq[i:i+w]
-	print(i, dogma.gc_comp(s), dogma.gc_skew(s))	# calculates gc comp and gc skew for each 10 nucleotide window
+	# calculates gc comp and gc skew for each 10 nucleotide window
+	print(i, dogma.gc_comp(s), dogma.gc_skew(s))
 
 

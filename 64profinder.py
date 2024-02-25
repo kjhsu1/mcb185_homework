@@ -57,7 +57,7 @@ def profinder(path, min_pro_length):
 		min2 = dogma.translate(rev_comp_seq[1:])
 		min3 = dogma.translate(rev_comp_seq[2:])
 		
-		# append aa seqs (6 total)
+# append aa seqs (6 total)
 		if len(pos1) > min_pro_length: aa_seqs.append(pos1)
 		else: aa_seqs.append(f'AA seq less than {min_pro_length}')
 		if len(pos2) > min_pro_length: aa_seqs.append(pos2)
@@ -71,7 +71,7 @@ def profinder(path, min_pro_length):
 		if len(min3) > min_pro_length: aa_seqs.append(min3)
 		else: aa_seqs.append(f'AA seq less than {min_pro_length}')
 		
-		# append aa deflines (6 total) (labled 0~5)
+# append aa deflines (6 total) (labled 0~5)
 		for i in range(6):
 			aa_deflines.append(f'{defline[:11]}-prot-{i}')
 	# return fully appended defline and seq lists

@@ -1,26 +1,33 @@
 # 62skewer.py by Kenta Hsu 
 
 # 61skewer is computationally inefficient 
-# as you move the window over by 1 each time there is no need to count everything in the middle again
+# as you move the window over by 1 each time there 
+# is no need to count everything in the middle again
 # it's just the beginning and the end that is changing 
 
 # more efficient is to only read the first window
-# after the first, drop off one nucleotide on left and then add one to right 
+# after the first, drop off one nucleotide 
+# on left and then add one to right 
 
 # write program and test on e.coli genome with 1000 nt window 
 
 # import 
 import dogma
 import sys
-import mcb185 # this python script is in the mcb185_homework directory
+# this python script is in the mcb185_homework directory
+import mcb185 
 # the soft link for the mcb_185 library is in there as well, thus no error
 
 # get path to genome file from CLI argument
 # file will be in fasta format 
-path = sys.argv[1]	# should be GCF_000005845.2_ASM584v2_genomic.fna.gz (use soft link ecoli.fna.gz)
-# read_fasta function returns a single tuples with each element as a defline and seq in a tuple
+# should be GCF_000005845.2_ASM584v2_genomic.fna.gz 
+# (use soft link ecoli.fna.gz)
+path = sys.argv[1]	
+# read_fasta function returns a single tuples with 
+# each element as a defline and seq in a tuple
 
-def fasta_to_lists(path):	# returns two lists with defline and seq
+# returns two lists with defline and seq
+def fasta_to_lists(path):
 	# store defline and sequence in a list 
 	# not working with multiple records for this problem
 	defline_list = []
@@ -44,7 +51,8 @@ def better_skewer(path, w):
 	# first string sequence from the first fasta record
 	seq = seq_list_all[0]	
 	first_window = seq[:w]	
-	# store g and c counts for first window (will use same var for each frame)
+	# store g and c counts for first window 
+	# (will use same var for each frame)
 	g_count = first_window.count('G')
 	c_count = first_window.count('C')
 	# append first gc comp and skew

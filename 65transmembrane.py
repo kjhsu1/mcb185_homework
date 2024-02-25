@@ -29,8 +29,8 @@ def proline_check(seq):	# takes seq as string, returns True or False
 	if seq.find('P') == -1: return False
 	else: return True
 
-def KD_hydrophobicity(amino_acid):
-	if amino_acid == 'A': 	return 1.8
+def kd_hydrophobicity(amino_acid):
+	if amino_acid == 'A':   return 1.8
 	elif amino_acid == 'C': return 2.5
 	elif amino_acid == 'D': return -3.5
 	elif amino_acid == 'E': return -3.5

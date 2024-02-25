@@ -30,13 +30,15 @@ def shannon_entropy(a, c, g, t):
 	h = 0 
 	total_nuc = a+t+g+c
 	
-	a_prob = a / total_nuc							# probability of occurance for each base
+	# probability of occurance for each base
+	a_prob = a / total_nuc			
 	c_prob = c / total_nuc
 	g_prob = g / total_nuc
 	t_prob = t / total_nuc
 	
 	if a_prob != 0: 
-		h = h + a_prob * math.log2(a_prob)		# expressions inside the sigma
+		# expressions inside the sigma
+		h = h + a_prob * math.log2(a_prob)
 	if c_prob != 0: 
 		h = h + c_prob * math.log2(c_prob)
 	if g_prob != 0: 
@@ -47,7 +49,8 @@ def shannon_entropy(a, c, g, t):
 	return -h	# final entropy value
 
 def dust(seq, w, threshold):
-	seq_as_list = list(seq)	 # so we can change char to 'N'
+	# so we can change char to 'N'
+	seq_as_list = list(seq)
 	# same idea as 62skewer 
 	# only need to take a, t, g, c, count for the first frame
 	# we need each nt count for entropy calc
