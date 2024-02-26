@@ -19,11 +19,20 @@ import itertools
 def single_seq_kmer_finder(seq, k):
 	# make dict w/all kmers found
 	kmers = {}
+	# for the forward seq
 	for i in range(len(seq) -k +1):
 		kmer = seq[i:i+k]
 		# default is checking the key
 		if kmer not in kmers: kmers[kmer] = 0
 		kmers[kmer] += 1
+	
+	# for the rev comp
+	rev_comp = mcb185.anti_seq(seq)
+	for i in range(len(rev_comp) -k +1):
+		kmer = rev_comp[i:i+k]
+		if kmer not in kmers: kmers[kmer] = 0
+		kmers[kmer] += 1 
+	
 	# kmers should have all kmers stored
 	return kmers
 
@@ -74,10 +83,8 @@ def kmer_checker(path):
 		for defline, seq in mcb185.read_fasta(path):
 			# print missing kmer for every seq in file
 			# for original strnad
-			print(f'{defline}:\n{check_kmer_until_missing(seq)}')
-			# for compliment strand
-			rev_comp = mcb185.anti_seq(seq)
-			print(f"rev comp of {defline} are:\n{check_kmer_until_missing(rev_comp)}")
+			final_missing_kmer = check_kmer_until_missing(seq)
+			print(f'{defline}:\n{final_missing_kmer}')
 
 # run 
 path = sys.argv[1]
