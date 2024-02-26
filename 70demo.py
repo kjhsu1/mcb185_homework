@@ -47,6 +47,42 @@ print(d.values())
 # casting to a list 
 print(list(d.values()))
 
+# counting nucleotides with dictionary 
+seq = 'ATGA'
+count = {}
+for nt in seq:
+	if nt not in count: count[nt] = 0
+	count[nt] += 1
+
+# sorting dictionaries 
+# this sorts the keys
+# sorted(count), imagine this as list of keys but sorted
+for k in sorted(count): print(k, count[k])
+
+# sorting dictionaries by values 
+# sorted() takes a list as argument 
+# dictionary.item() outputs kinda like two parallel...
+# key-value pair lists
+'''
+sorted() can also take 2 arguments
+the dictionary and either the key or value specification
+lambda functions are the specifier 
+'''
+for k, v in sorted(count.items(), key=lambda item: items[1]):
+		print(k, v)
+
+# K-mers 
+# k-mers refer to the individual window in a 
+# sliding window algorithm 
+
+
+
+
+
+
+
+
+
 
 
 

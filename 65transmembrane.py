@@ -61,7 +61,7 @@ def has_signal_pep_check_pass(seq): # feed first 30 aa seq
 		kd_sum = 0
 		current_window = seq[i:i+w] 
 		for aa in current_window: 
-			kd_sum += KD_hydrophobicity(aa)
+			kd_sum += kd_hydrophobicity(aa)
 		# average
 		average_kd = kd_sum / w
 		if average_kd >= 2.5 and proline_check(current_window) == False:
@@ -76,7 +76,7 @@ def has_transmembrane_region(seq): # feed seq after first 30 aa
 		kd_sum = 0
 		current_window = seq[i:i+w] 
 		for aa in current_window: 
-			kd_sum += KD_hydrophobicity(aa)
+			kd_sum += kd_hydrophobicity(aa)
 		# average
 		average_kd = kd_sum / w
 		if average_kd >= 2.0 and proline_check(current_window) == False:
