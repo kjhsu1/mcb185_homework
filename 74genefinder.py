@@ -4,6 +4,7 @@ import sys
 import mcb185 # for fasta reader
 
 path = sys.argv[1]
+orf_min_length = sys.argv[2]
 
 # input: FASTA fna file 
 # output: GFF formatted gene features 
@@ -72,6 +73,12 @@ def list_of_stops(seq, frame):
 	return stops
 
 # make sure both starts and stop lists are numerically sorted
+# *note think function doesn't handle some situations
+# 1. No stop or start codons
+# 2. Some stop but no start codons
+# 3. No stop but no start codons
+# may need to fix?
+
 # takes in: start and stop codon coords as lists
 # returns: dict with all CDS regions
 def best_start_stop(starts, stops):
@@ -110,29 +117,63 @@ def best_start_stop(starts, stops):
 # function that checks if ORF is 300 nt
 # takes in: dictionary with all CDS regions
 # returns: dictionary with CDS regions w/ length >= 300nt
-def orf_filter(cds_dict):
+def orf_filter(cds_dict, orf_min_length, seq):
 	filtered_dict = {} # store only CDS region >300
 	for start, stop in cds_dict.items():
 		if type(stop) == int:
 			length = int(stop) - int(start) + 1 
-			if length >= 300: # if CDS >= 300
+			if length >= int(orf_min_length): # if CDS >= 300
 				filtered_dict[start] = stop # add to new dict
+		# if CDS goes all way to the end
+		elif type(stop) == str:
+			length = len(seq) - int(start) + 1
+			if length >= int(orf_min_length):
+				filtered_dict[start] = len(seq)
+
 	return filtered_dict
 
 
-# testing on first 30 lines of coding/sense strand in e.coli genome
 # dictionary stores CDS for each reading frame
 # ie. keys = 1, 2, 3, -1, -2, -3
 cds_all_frames = {} 
-for defline, seq in mcb185.read_fasta(path):
-	starts = list_of_starts(seq, 1)
-	stops = list_of_stops(seq, 1)
-	cds = best_start_stop(starts, stops)
-	cds = orf_filter(cds) # filtered cds regions (start-end dictionaries)
-	cds_all_frames[1] = cds 
+# for frames 1, 2, 3
+for i in range(1, 4):
+	for defline, seq in mcb185.read_fasta(path):
+		starts = list_of_starts(seq, i)
+		stops = list_of_stops(seq, i)
+		cds = best_start_stop(starts, stops)
+		cds = orf_filter(cds, orf_min_length, seq) # filtered cds regions (start-end dictionaries)
+		cds_all_frames[i] = cds 
+# for frames -1, -2, -3 
+for i in range(1, 4):
+	for defline, seq in mcb185.read_fasta(path):
+		seq = mcb185.anti_seq(seq) # reverse-comp
+		starts = list_of_starts(seq, i)
+		stops = list_of_stops(seq, i)
+		cds = best_start_stop(starts, stops)
+		cds = orf_filter(cds, orf_min_length, seq) # filtered cds regions (start-end dictionaries)
+		cds_all_frames[-i] = cds 
 
-# print 
-print(cds_all_frames)
+# convert CDS dictionary into GFF format 
+# cds_all_frames is a dictionary containing 6 dictionaries for each frame
+print('frame\tCDS\tstart\tstop')
+
+# iterate through 6 dictionaries for each frame
+# keys: frame # (ie. 1, 2, 3, -1, -2, -3)
+# values: dictionaries w/ start-stop for particular frame
+for frame_number, cds_in_frame in cds_all_frames.items(): 
+	cds_number = 1
+	for start, stop in cds_in_frame.items():
+		print(f'{frame_number}\t{cds_number}\t{start}\t{stop}')
+		cds_number += 1
+
+
+
+
+
+
+
+
 
 
 
