@@ -142,7 +142,8 @@ for i in range(1, 4):
 		starts = list_of_starts(seq, i)
 		stops = list_of_stops(seq, i)
 		cds = best_start_stop(starts, stops)
-		cds = orf_filter(cds, orf_min_length, seq) # filtered cds regions (start-end dictionaries)
+# filtered cds regions (start-end dictionaries)
+		cds = orf_filter(cds, orf_min_length, seq)
 		cds_all_frames[i] = cds 
 # for frames -1, -2, -3 
 for i in range(1, 4):
@@ -151,7 +152,8 @@ for i in range(1, 4):
 		starts = list_of_starts(seq, i)
 		stops = list_of_stops(seq, i)
 		cds = best_start_stop(starts, stops)
-		cds = orf_filter(cds, orf_min_length, seq) # filtered cds regions (start-end dictionaries)
+# filtered cds regions (start-end dictionaries)
+		cds = orf_filter(cds, orf_min_length, seq)
 		cds_all_frames[-i] = cds 
 
 # convert CDS dictionary into GFF format 

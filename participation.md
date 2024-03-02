@@ -18,7 +18,7 @@ Participation
 |:-:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:---:|:--------
 | 5 |    |    |    |    |  2 |    |    |    |     | 
 | 6 |    |    |    |  2	|  2 |    |    |    |     | Coderie I hosted was 2 hours long, worked with 2 other people the whole time
-| 7 |    |    |    |    | 2  |    |    |    |     | Coderie I hosted was 2 hours long, worked with 3 other people for most of the time
+| 7 |    |    |    | 2  | 2  |    |    |    |     | Coderie I hosted was 2 hours long, worked with 3 other people for most of the time
 | 8 | 
 | 9 |
 
