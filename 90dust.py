@@ -4,6 +4,7 @@
 
 import argparse 
 import mcb185
+import dogma
 import math
 
 # stuff for the --help
@@ -26,30 +27,6 @@ lower = arg.lower
 
 # meat of program 
 
-# shannon entropy
-def shannon_entropy(a, c, g, t):
-	# intializing
-	h = 0 
-	total_nuc = a+t+g+c
-	
-	# probability of occurance for each base
-	a_prob = a / total_nuc			
-	c_prob = c / total_nuc
-	g_prob = g / total_nuc
-	t_prob = t / total_nuc
-	
-	if a_prob != 0: 
-		# expressions inside the sigma
-		h = h + a_prob * math.log2(a_prob)
-	if c_prob != 0: 
-		h = h + c_prob * math.log2(c_prob)
-	if g_prob != 0: 
-		h = h + g_prob * math.log2(g_prob)
-	if t_prob != 0: 
-		h = h + t_prob * math.log2(t_prob)
-
-	return -h	# final entropy value
-
 # dust function with added 'lower' parameter
 def dust(seq, w, threshold, lower): # added 'lower' parameter
 	# so we can change char to 'N'
@@ -63,7 +40,7 @@ def dust(seq, w, threshold, lower): # added 'lower' parameter
 	g = first_frame.count('G')
 	t = first_frame.count('T')
 	# check first frame separately 
-	if shannon_entropy(a, c, g, t) < 1.4:
+	if dogma.shannon_entropy(a, c, g, t) < 1.4:
 		for i in range(w-1): seq_as_list[i] = 'N' 
 	
 	# now do the rest
@@ -83,10 +60,10 @@ def dust(seq, w, threshold, lower): # added 'lower' parameter
 		
 		# calc entropy, mask accordingly
 		# when lower==False, mask with 'N'
-		if shannon_entropy(a, c, g, t) < 1.4 and lower == False: 
+		if dogma.shannon_entropy(a, c, g, t) < 1.4 and lower == False: 
 			for j in range(i, i+w): seq_as_list[j] = 'N'
 		# when lower==True
-		if shannon_entropy(a, c, g, t) < 1.4 and lower == True:
+		if dogma.shannon_entropy(a, c, g, t) < 1.4 and lower == True:
 			for j in range(i, i+w): 
 				# sorry if we can't use lower(), I can fix it
 				# make it lowercase

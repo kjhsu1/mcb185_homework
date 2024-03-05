@@ -1,5 +1,5 @@
 # dogma.py by Kenta Hsu
-
+import math
 # library for biology 
 
 def transcribe(dna):		# converts DNA coding strand into mRNA 
@@ -125,5 +125,28 @@ def oligo_meltingtemp(seq):
 		Tm = 64.9 + 41*(g+c - 16.4) / length
 		return Tm
 
+# shannon entropy
+def shannon_entropy(a, c, g, t):
+	# intializing
+	h = 0 
+	total_nuc = a+t+g+c
+	
+	# probability of occurance for each base
+	a_prob = a / total_nuc			
+	c_prob = c / total_nuc
+	g_prob = g / total_nuc
+	t_prob = t / total_nuc
+	
+	if a_prob != 0: 
+		# expressions inside the sigma
+		h = h + a_prob * math.log2(a_prob)
+	if c_prob != 0: 
+		h = h + c_prob * math.log2(c_prob)
+	if g_prob != 0: 
+		h = h + g_prob * math.log2(g_prob)
+	if t_prob != 0: 
+		h = h + t_prob * math.log2(t_prob)
+
+	return -h	# final entropy value
 
 
