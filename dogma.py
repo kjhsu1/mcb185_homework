@@ -107,8 +107,23 @@ def gc_skew(seq):
 	return (g - c) / (g + c)
 	
 
+# oligo nt temp
 
-
+def oligo_meltingtemp(seq):
+	# nt counts
+	a = seq.count('A')
+	c = seq.count('C')
+	g = seq.count('G')
+	t = seq.count('T')
+	# seq length
+	length = len(seq)
+	# meat 
+	if length <= 13:
+		Tm = (a+t)*2 + (g+c)*4
+		return Tm
+	else:
+		Tm = 64.9 + 41*(g+c - 16.4) / length
+		return Tm
 
 
 
