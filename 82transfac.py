@@ -2,6 +2,8 @@
 import sys
 import re
 import gzip
+import json
+
 # things to store
 # prob best store this all in a dictionary
 # key: (ie. ID, etc) 
@@ -24,38 +26,47 @@ import gzip
 # after three 'X' starts create new dictionary
 
 path = sys.argv[1]
-with gzip.open('24lines.transfac.gz')as fp:
-	transfac_dict = {} # key: AC name
-	ac = '' # track ac
-	
+with gzip.open(path, 'rt') as fp:
+	transfac_list = [] # list of dict for each id
+	current_id = '' # track ac
+	numbers = False
+
 	for line in fp:
 		line = line.rstrip()
-		print(line)
-		if line[:2] == 'AC':
-			ac = line[3:]
-			transfac_dict[ac] = {}
-			continue
-		if line[:2] == 'XX': continue
+		tag = line[:2]
 		
-		# if not 'AC' or 'XX'
-		tag = line[:2] 
+		if tag == 'XX':
+			numbers = False
 		if tag == 'ID':
-			transfac_dict[ac][tag] = line[3:]
-		elif tag == 'DE':
-			list1 = line.split(' ; ')
-			list2 = list1[0].split()
-			transfac_dict[ac][tag] = [list2[2], list1[1]]
-		elif tag == 'PO':
-			transfac_dict[ac][tag] = {}
-		elif tag == 'CC':
-			sub_str = line[3:]
-			list4 = sub_str.split(':')
-			transfac_dict[ac][list3[0]] = list4[1]
-		else: # for all the lines with numbers
-			list3 = line.split()
-			print(list3)
-			transfac_dict[ac]['PO'][line[:2]] = [list3[1], list3[2], 
-			list3[3],list3[4]]
+			current_id = line[3:]
+			transfac_list.append({'id': current_id})
+		if tag == 'PO':
+			transfac_list[-1] = {'id': current_id, 'pwm': []}
+			numbers = True
+			continue # PWM values starting on next line
+		
+		# when numbers=True
+		if numbers == True:
+			# store dictionary for current id temporarily
+			temp_dict = transfac_list[-1] 
 
+			# add PWM values to a new dictionary
+			line_as_list = line.split()
+			new_dict = {
+				'A': line_as_list[1], 
+				'C': line_as_list[2],
+				'G': line_as_list[3],
+				'T': line_as_list[4]
+			}
+
+			# append the pwm list with each nt in consensus
+			temp_dict['pwm'].append(new_dict)
+
+			# change actual dictionary 
+			transfac_list[-1] = temp_dict
+
+
+
+print(json.dumps(transfac_list, indent=4))
 
 
