@@ -1,4 +1,4 @@
-# 64profinder.py by Kenta Hsu
+# 64profinder.py by Kenta Hsu and Natalia Marin
 
 # input multi-FASTA file of DNA 
 # output multi-FASTA file of proteins (in all 6 reading frames)

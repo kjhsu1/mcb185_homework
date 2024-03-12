@@ -16,10 +16,10 @@ Participation
 
 | U | AC | VP | AQ | OC | SH | SA | CA | OA | Tot | Notes
 |:-:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:---:|:--------
-| 5 |    |    |    |    |  2 |    |    |    |     | 
-| 6 |    |    |    |  2	|  2 |    |    |    |     | Coderie I hosted was 2 hours long, worked with 2 other people the whole time
+| 5 |    |    |    |    |  2 |    |    |    |  2  | 
+| 6 |    |    |    |  2	|  2 |    |  1 |    |  5  | Coderie I hosted was 2 hours long, worked with 2 other people the whole time
 | 7 |    |    |    | 2  | 2  |    |    |    |     | Coderie I hosted was 2 hours long, worked with 3 other people for most of the time
-| 8 | 
+| 8 |    |    |    | 2  |    | 1  |    | 2  |  4  | Classmate direct messaged me on discord asking for individual help. Did 3 hour session helping her complete previous assignment
 | 9 |
 
 Notes: 
