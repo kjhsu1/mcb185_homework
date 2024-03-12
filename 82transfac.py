@@ -12,8 +12,8 @@ import json
 # ID: 1 string 
 # DE: tuple(list w/ 2 strings), 1 string)
 # PO: dictionary w/ keys: number of nts in motif
-				   # value: dictionary w/ keys: A, C, G, T
-				   						# value: prob each base
+	# value: dictionary w/ keys: A, C, G, T
+		# value: prob each base
 # tax_group: 1 string
 # tf_family: 1 string
 # pubmed: 1 string 

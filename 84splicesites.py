@@ -37,7 +37,8 @@ def printer(org, a_or_d, pwm):
 	print('XX')
 	print(f'DE {a_or_d}')
 	print(f'PO\tA\tC\tG\tT')
-	for i, nt in enumerate(pwm.keys()): # this goes through each key in acceptor dict
+	# this goes through each key in acceptor dict
+	for i, nt in enumerate(pwm.keys()): 
 		i += 1
 		a = pwm[nt]['A']
 		c = pwm[nt]['C']
