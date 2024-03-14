@@ -69,13 +69,14 @@ def splice_site_pwm(gff, fa, org):
 		for intron in introns:
 			# if correct chromosome
 			if defline_words[0] == intron[0]:
-				intron_seq = seq[intron[1]:intron[2]+1]
+				# if intron is '+' strand
+				if intron[4] == '+':
+					intron_seq = seq[intron[1]:intron[2]+1]
 				# intron has to be at least 60 nt long
 				#if len(intron_seq) < 60: continue
 				# if minus strand, do reverse comp 
-				if intron[4] == '-':
-					anti = mcb185.anti_seq(seq)
-					intron_seq = anti[intron[1]:intron[2]+1]
+				elif intron[4] == '-':
+					intron_seq = mcb185.anti_seq(seq[intron[1]:intron[2]+1])
 				# donor and acceptor seq
 				d_seq = intron_seq[:6]
 				a_seq = intron_seq[-7:]
