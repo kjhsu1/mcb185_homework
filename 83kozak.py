@@ -114,22 +114,29 @@ def kozak_pwm(path):
 	# get contig origin regions from gbff
 	# get + and - strand
 	seq = contig_origin(path)
-	anti_seq = mcb185.anti_seq(contig_origin(path))
 
 	for cds in cds_list:
-		# extract start coord
+		# extract start and end coords
 		start = int(cds[0])
+		end = int(cds[1])
 
 		# if strand is pos
+		# extract kozak sequence part
+		# 14 bases including the start 
+		# make sure to adjust to 0-base index
+			# -1 to go from 1based to 0based
 		if cds[2] == '+':
-			# extract kozak sequence part
-			# 14 bases including the start 
-			# make sure to adjust to 0-base index
-				# -1 to go from 1based to 0based
 			kozak = seq[start-9 -1:start+5 -1]
+		
 		# if strand is neg
+		# coords are still relative to the + strand
+			# this part was confusing
+		# 1. slice for kozak frame on the + strand
+		# 2. take revcomp of that, then reverse it
+			# effectively just the complement
 		elif cds[2] == '-':
-			kozak = anti_seq[start-9 -1:start+5 -1]
+			kozak = seq[end -1 -4:end -1 +10]
+			kozak = mcb185.anti_seq(kozak)
 
 		# add to pwm
 		for i, nt in enumerate(kozak):
