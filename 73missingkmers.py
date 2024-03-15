@@ -84,7 +84,9 @@ def kmer_checker(path):
 			# print missing kmer for every seq in file
 			# for original strnad
 			final_missing_kmer = check_kmer_until_missing(seq)
-			print(f'{defline}:\n{final_missing_kmer}')
+			print(defline)
+			for missing_k in final_missing_kmer:
+				print(missing_k)
 
 # run 
 path = sys.argv[1]

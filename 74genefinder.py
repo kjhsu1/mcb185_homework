@@ -136,16 +136,23 @@ def orf_filter(cds_dict, orf_min_length, seq):
 # dictionary stores CDS for each reading frame
 # ie. keys = 1, 2, 3, -1, -2, -3
 cds_all_frames = {} 
+
+# harvest len(seq)
+# will use at the end
+seq_length = 0
+
 # for frames 1, 2, 3
 for i in range(1, 4):
 	for defline, seq in mcb185.read_fasta(path):
+		seq_length = len(seq)
 		starts = list_of_starts(seq, i)
 		stops = list_of_stops(seq, i)
 		cds = best_start_stop(starts, stops)
 # filtered cds regions (start-end dictionaries)
 		cds = orf_filter(cds, orf_min_length, seq)
 		cds_all_frames[i] = cds 
-# for frames -1, -2, -3 
+# for frames -1, -2, -3
+# have to adjust coordinates so it's relative to + strand 
 for i in range(1, 4):
 	for defline, seq in mcb185.read_fasta(path):
 		seq = mcb185.anti_seq(seq) # reverse-comp
@@ -155,6 +162,8 @@ for i in range(1, 4):
 # filtered cds regions (start-end dictionaries)
 		cds = orf_filter(cds, orf_min_length, seq)
 		cds_all_frames[-i] = cds 
+		# key: -1, -2, -3
+		# value: dictionary w/ start: stop as keys
 
 # convert CDS dictionary into GFF format 
 # cds_all_frames is a dictionary containing 6 dictionaries for each frame
@@ -166,7 +175,17 @@ print('frame\tCDS\tstart\tstop')
 for frame_number, cds_in_frame in cds_all_frames.items(): 
 	cds_number = 1
 	for start, stop in cds_in_frame.items():
-		print(f'{frame_number}\t{cds_number}\t{start}\t{stop}')
+		# if frame # is less than 0 as in the - strand...
+		if frame_number < 0:
+			# adjusted start and stops
+			# now relative to + strand
+			adj_start = seq_length-stop 
+			adj_stop = seq_length-start
+			print(f'{frame_number}\t{cds_number}\t{adj_start}\t{adj_stop}')
+		# if frame # is greater than 0 as in the + strand...
+		# you don't have to adjust the coords
+		elif frame_number > 0:
+			print(f'{frame_number}\t{cds_number}\t{start}\t{stop}')
 		cds_number += 1
 
 
