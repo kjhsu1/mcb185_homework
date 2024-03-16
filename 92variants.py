@@ -16,9 +16,20 @@
 # first go through the vcf and extract nt coords and chromosome number 
 import sys
 import gzip
+import argparse
 
-vcf = sys.argv[1]
-gff = sys.argv[2]
+# JUST NEED TO FINISH WRITING THE CLI ARGUMENT PARSER
+parser = argparse.ArgumentParser(description='variant reporter')
+parser.add_argument('gff', type=str, help='gff file' )
+parser.add_argument('vcf', type=str, help='vcf file')
+# create object with this parser property?
+# stores all values so it's harvestable
+arg = parser.parse_args()
+print('reporting variants with:', arg.gff, arg.vcf)
+
+# harvest CL arguments 
+vcf = arg.vcf
+gff = arg.gff
 
 # list stores tuple with three elements
 # chrom, coords, and feature
