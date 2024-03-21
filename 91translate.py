@@ -29,29 +29,36 @@ min_len = arg.m
 anti = arg.anti
 
 # meat of program 
+def translate_transcript(anti, path, min_len):
+	for defline, seq in mcb185.read_fasta(path):
+		# first find first 'ATG'
 
-for defline, seq in mcb185.read_fasta(path):
-	# first find first 'ATG'
-	start_index = seq.find('ATG')
-	seq = seq[start_index:]
-	aa = dogma.translate(seq)
-	
-	# if aa seq less than min, skip
-	if len(aa) < min_len:
-		continue
-	
-	# else
-	print(defline)
-	print(aa)
-	
-	# if anti is true and len(anti_aa) >= 300
-	anti_seq = dogma.revcomp(seq)
-	start_index = anti_seq.find('ATG')
-	anti_aa = dogma.translate(anti_seq[start_index:])
-	if anti == True and len(anti_aa) >= 300:
-		print(f'Anti of: {defline}')
-		print(anti_aa)
+		# for the forward strand
+		start_index = seq.find('ATG')
+		seq = seq[start_index:]
+		aa = dogma.translate(seq)
+		# need to slice at the first '*'
+		aa = aa[:aa.find('*')+1]
 
+		# for the anti if anti == True
+		anti_aa = ''
+		if anti == True:
+			anti_start_index = mcb185.anti_seq(seq).find('ATG')
+			anti_seq = mcb185.anti_seq(seq)[anti_start_index:]
+			anti_aa = dogma.translate(anti_seq)
+			anti_aa = anti_aa[:anti_aa.find('*')+1]
+		
+		# if aa seq >= than min, print
+		if len(aa) >= min_len:
+			print(f'>{defline}')
+			print(aa)
+
+		# if anti_aa seq >= than min, print
+		if len(anti_aa) >= min_len:
+			print(f'>anti of {defline}')
+			print(anti_aa)
+# call
+translate_transcript(anti, path, min_len)
 
 
 
