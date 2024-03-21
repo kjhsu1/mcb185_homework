@@ -20,7 +20,7 @@ Participation
 | 6 |    |    |    |  2	|  2 |    |  1 |    |  5  | Coderie I hosted was 2 hours long, worked with 2 other people the whole time
 | 7 |    |    |    | 2  | 2  |    |    |    |  4  | Coderie I hosted was 2 hours long, worked with 3 other people for most of the time
 | 8 |    |    |    | 2  |    | 1  |    | 2  |  5  | Classmate direct messaged me on discord asking for individual help. Did 3 hour session helping her complete previous assignment
-| 9 |    |    |    | 2  |    |    |    | 1  |  3  | Classmate direct messaged me on discord asking for individual help. Did 2 hour session helping her complete previous assignment
+| 9 |    |    |    | 2  |    |    |    | 2  |  4  | 2 classmates direct messaged me on discord asking for individual help. Did 2 hour session for the first person, and 1 hour session for the second person. 
 
 Notes: 
 
